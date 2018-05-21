@@ -1,0 +1,24 @@
+!.keep
+!/log/.keep
+!/tmp/.keep
+*.DS_Store
+*.swo
+*.swp
+/.bundle
+/.env.local
+/.postgres
+/coverage/*
+/log/*
+/node_modules
+/public/assets
+/public/packs
+/public/system
+/tags
+/tmp/*
+/yarn-error.log
+
+# Ignore uploaded files in development
+/storage/*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

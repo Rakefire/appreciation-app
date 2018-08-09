@@ -1,0 +1,102 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: appreciation-app
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: appreciation-app
+          POSTGRES_DB: appreciation-app_test
+          POSTGRES_PASSWORD: ""
+      - image: redis:4.0
+      - image: memcached:1.5.7-alpine
+    environment:
+      - DATABASE_URL: "postgres://appreciation-app@localhost:5432/appreciation-app_test"
+
+    steps:
+      - checkout
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle/yarn cache
+      - restore_cache:
+          keys:
+            - appreciation-bundle-{{ checksum "Gemfile.lock" }}
+            - appreciation-bundle-{{ checksum "package.json" }}
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run:
+          name: Yarn Install
+          command: yarn install
+
+
+      # Store bundle/yarn cache
+      - save_cache:
+          key: appreciation-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - save_cache:
+          key: appreciation-bundle-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Install Rake and Brakeman
+          command: gem install bundler rake brakeman
+
+      - run:
+          name: Wait for Postgres
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Wait for Redis
+          command: dockerize -wait tcp://localhost:6379 -timeout 1m
+
+      - run:
+          name: Wait for Memcached
+          command: dockerize -wait tcp://localhost:11211 -timeout 1m
+
+      - run:
+          name: Install PostgresClient
+          command: sudo apt install postgresql-client
+
+      - run:
+          name: Database setup
+          command: bundle exec rake db:schema:load --trace
+
+      - run:
+          name: Bundler Audit
+          command: bundle exec bundle-audit check --update
+
+      - run:
+          name: Brakeman
+          command: brakeman --exit-on-warn --progress -i config/brakeman.ignore
+
+      # Run rspec
+      - run:
+          name: "Run Tests"
+          command: |
+            bundle exec rspec --color \
+                              --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # Save test results for timing analysis
+      - store_test_results:
+          path: test_results

@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "b5614640711ac3018283c6dc94760f7d2e44e086ee215cc0270c90cc98f1ab4c",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/concerns/passwordless/limit_to_verified_users.rb",
+      "line": 18,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "authenticatable_class.verified.find_by(\"lower(#{email_field}) = ?\", (params.dig(:passwordless, :email) or \"\").downcase)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Passwordless::LimitToVerifiedUsers",
+        "method": "find_authenticatable"
+      },
+      "user_input": "email_field",
+      "confidence": "Weak",
+      "note": "email_field is provided by developer; not an SQL injection possibility"
+    }
+  ],
+  "updated": "2018-08-09 15:46:51 -0400",
+  "brakeman_version": "4.3.1"
+}

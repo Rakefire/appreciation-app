@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  verified: User verified!
+  already_verified: User has alread been verified.
+  email_already_in_use: Email is already used.
+  user_mailer:
+    welcome:
+      subject: Welcome!
+    verification:
+      subject: Verifying Email Address

@@ -1,0 +1,9 @@
+<h1>User#welcome</h1>
+
+<p>
+  <%= @greeting %>, find me in app/views/user_mailer/welcome.html.erb
+</p>
+
+<p>
+  Verify your user account <%= verify_sign_ups_url(@user.verification_token) %>
+</p>

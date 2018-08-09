@@ -5,12 +5,15 @@ ruby "2.5.1"
 
 gem "autoprefixer-rails"
 gem "rack-canonical-host"
+gem "passwordless"
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 3.11"
 gem "rails", "~> 5.2.0"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "turbolinks", "~> 5"
+gem "rectify"
+gem "simple_form"
 gem "jbuilder", "~> 2.5"
 gem "tachyons-rails"
 
@@ -30,7 +33,11 @@ end
 
 group :test do
   gem "capybara-webkit"
+  gem "formulaic"
+  gem "faker"
   gem "timecop"
+  gem "wisper-rspec", require: false
+  gem "webmock"
 end
 
 group :development do
@@ -38,6 +45,7 @@ group :development do
   gem "web-console", ">= 3.3.0"
   gem "pry-rails"
   gem "listen", ">= 3.0.5", "< 3.2"
+  gem "letter_opener"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-commands-rspec"

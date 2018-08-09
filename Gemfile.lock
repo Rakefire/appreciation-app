@@ -47,6 +47,11 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (8.5.0)
       execjs
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.3.0)
       msgpack (~> 1.0)
@@ -68,13 +73,20 @@ GEM
       capybara (>= 2.3, < 4.0)
       json
     coderay (1.1.2)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.4)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.3)
     dotenv (2.4.0)
     dotenv-rails (2.4.0)
       dotenv (= 2.4.0)
       railties (>= 3.2, < 6.0)
+    equalizer (0.0.11)
     erubi (1.7.1)
     execjs (2.7.0)
     factory_bot (4.8.2)
@@ -82,15 +94,27 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.9.23)
+    formulaic (0.4.0)
+      activesupport
+      capybara
+      i18n
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashdiff (0.3.7)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    ice_nine (0.11.2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     json (2.1.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.6.0)
+      launchy (~> 2.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -112,6 +136,9 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    passwordless (0.5.4)
+      bcrypt (~> 3.1.11)
+      rails (>= 5.1.4)
     pg (1.0.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -157,6 +184,12 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rectify (0.12.0)
+      activemodel (>= 4.1.0)
+      activerecord (>= 4.1.0)
+      activesupport (>= 4.1.0)
+      virtus (~> 1.0.5)
+      wisper (>= 1.6.1)
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -175,6 +208,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
+    safe_yaml (1.0.4)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -186,6 +220,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    simple_form (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -213,11 +250,20 @@ GEM
     uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
     uniform_notifier (1.11.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webmock (3.4.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     webpacker (3.5.3)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -225,6 +271,8 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    wisper (2.0.0)
+    wisper-rspec (1.1.0)
     xpath (3.0.0)
       nokogiri (~> 1.8)
 
@@ -239,16 +287,22 @@ DEPENDENCIES
   capybara-webkit
   dotenv-rails
   factory_bot_rails
+  faker
+  formulaic
   jbuilder (~> 2.5)
+  letter_opener
   listen (>= 3.0.5, < 3.2)
+  passwordless
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)
   rack-canonical-host
   rack-timeout
   rails (~> 5.2.0)
+  rectify
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
+  simple_form
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
@@ -257,10 +311,12 @@ DEPENDENCIES
   turbolinks (~> 5)
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webmock
   webpacker
+  wisper-rspec
 
 RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

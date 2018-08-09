@@ -35,6 +35,16 @@ en:
   email_already_in_use: Email is already used.
   user_mailer:
     welcome:
-      subject: Welcome!
+      subject: "[Appreciation] Welcome!🙌"
     verification:
-      subject: Verifying Email Address
+      subject: "[Appreciation] Verifying Email Address 🔎"
+  passwordless:
+    sessions:
+      create:
+        session_expired: 'Your session has expired, please sign in again.'
+        email_sent_if_record_found: "If we found you in the system, we've sent you an email."
+      new:
+        submit: 'Send magic link'
+    mailer:
+      subject: "[Appreciation] Your magic link ✨"
+      magic_link: "Here's your link: %{link}"

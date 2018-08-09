@@ -6,9 +6,9 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.welcome(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Welcome!")
+      expect(mail.subject).to include("Welcome!")
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.from).to eq(["youre-awesome@appreciation.app"])
     end
 
     it "renders the body" do
@@ -21,9 +21,9 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.verification(user) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Verifying Email Address")
+      expect(mail.subject).to include("Verifying Email Address")
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.from).to eq(["youre-awesome@appreciation.app"])
     end
 
     it "renders the body" do

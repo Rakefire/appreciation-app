@@ -31,5 +31,9 @@ module AppreciationApp
     config.generators.system_tests = nil
 
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
+
+    config.after_initialize do
+      Passwordless::SessionsController.send(:include, Passwordless::LimitToVerifiedUsers)
+    end
   end
 end

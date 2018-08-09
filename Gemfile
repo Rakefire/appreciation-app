@@ -32,10 +32,12 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara-webkit"
+  gem "capybara"
   gem "formulaic"
   gem "faker"
   gem "timecop"
+  gem "selenium-webdriver"
+  gem 'chromedriver-helper'
   gem "wisper-rspec", require: false
   gem "webmock"
 end

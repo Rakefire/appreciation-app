@@ -13,9 +13,9 @@ module Passwordless
       alias_method :find_authenticatable_orig, :find_authenticatable
 
       def find_authenticatable
-        authenticatable_class.verified.where(
-          "lower(#{email_field}) = ?", params[:passwordless][email_field].downcase
-        ).first
+        email = (params.dig(:passwordless, :email) || "").downcase
+        email.presence &&
+          authenticatable_class.verified.find_by("lower(#{email_field}) = ?", email)
       end
     end
   end

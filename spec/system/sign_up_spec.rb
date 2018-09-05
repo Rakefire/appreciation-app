@@ -6,7 +6,7 @@ RSpec.describe "sign up ", type: :system do
     visit root_path
 
     perform_enqueued_jobs do
-      click_on "Sign Up!"
+      click_on "Sign up"
       fill_in "Email", with: "ricky@rickychilcott.com"
       click_on "Create Sign up"
 

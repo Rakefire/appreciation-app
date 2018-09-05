@@ -38,6 +38,7 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_chrome_headless, options: { switches: %W[--user-agent=#{USER_AGENT}] }
+    # driven_by :selenium_chrome, options: { switches: %W[--user-agent=#{USER_AGENT}] }
     Rails.application.routes.default_url_options[:host] = "localhost:#{Capybara.current_session.server.port}"
   end
 

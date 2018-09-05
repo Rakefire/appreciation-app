@@ -1,18 +1,33 @@
-<h1>Homepage#index</h1>
+<%= content_for :subtitle do %>
+  Appreciate improves relationships
+<% end %>
 
-<div data-controller="hello" data-hello-name="Chris">
+<%= content_for :heading do %>
+  Who is someone you care about that deserves to be recognized?
+<% end %>
+
+<!-- <div data-controller="hello" data-hello-name="Chris">
   <input data-target="hello.name" type="text" data-action="paste->hello#paste">
   <button data-action="click->hello#log">Log</button>
+</div> -->
+
+<div class="ph3 tc">
+  <a class="f1 link dim ph5 pv3 mb2 dib white bg-dark-blue" href="#">Start</a>
 </div>
 
-<div>
-  <%= link_to "Sign Up!", new_sign_up_path %>
-</div>
-
-<div>
-  <% if Current.user %>
-    <%= link_to "Sign Out", auth.sign_out_path %>
-  <% else %>
-    <%= link_to "Sign In", auth.sign_in_path %>
-  <% end %>
-</div>
+<%= content_for :bottom_nav do %>
+  <div class="tc">
+    <% if Current.user? %>
+      <div class="pa6">
+        <%= link_to "Sign out", auth.sign_out_path, class: "link f1" %>
+      </div>
+    <% else %>
+      <div class="pa3">
+        <%= link_to "Sign up", new_sign_up_path, class: "link f1" %><br/>
+      <div>
+      <div class="pa3">
+        <%= link_to "Log in", auth.sign_in_path, class: "link f1" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@ RSpec.describe "login", type: :system do
       visit root_path
 
       perform_enqueued_jobs do
-        click_on "Sign In"
+        click_on "Log in"
         fill_in "passwordless[email]", with: user.email
         click_on "Send magic link"
 
@@ -25,7 +25,7 @@ RSpec.describe "login", type: :system do
       visit root_path
 
       perform_enqueued_jobs do
-        click_on "Sign In"
+        click_on "Log in"
         fill_in "passwordless[email]", with: user.email
         click_on "Send magic link"
 

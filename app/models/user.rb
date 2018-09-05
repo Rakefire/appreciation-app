@@ -4,6 +4,7 @@ class User < ApplicationRecord
   passwordless_with :email
 
   scope :verified, -> { where.not(verified_at: nil) }
+  has_many :appreciations
 
   def verified?
     verified_at?

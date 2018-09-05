@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_183632) do
+ActiveRecord::Schema.define(version: 2018_09_05_184259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "appreciations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "quality", null: false
+    t.string "access_code"
+    t.text "note", null: false
+    t.datetime "finalized_at"
+    t.datetime "read_at"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_appreciations_on_user_id"
+  end
 
   create_table "passwordless_sessions", force: :cascade do |t|
     t.string "authenticatable_type"
@@ -40,4 +53,5 @@ ActiveRecord::Schema.define(version: 2018_09_05_183632) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "appreciations", "users"
 end

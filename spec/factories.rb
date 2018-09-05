@@ -8,4 +8,11 @@ FactoryBot.define do
       verified_at nil
     end
   end
+
+  factory :appreciation do
+    name { Faker::Name.name }
+    quality { Faker::Cannabis.buzzword }
+    note { Faker::FamousLastWords.last_words }
+    user
+  end
 end

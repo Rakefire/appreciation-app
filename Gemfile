@@ -16,6 +16,7 @@ gem "rectify"
 gem "simple_form"
 gem "jbuilder", "~> 2.5"
 gem "tachyons-rails"
+gem "sidekiq"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'

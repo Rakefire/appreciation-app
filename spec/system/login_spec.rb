@@ -30,7 +30,7 @@ RSpec.describe "login", type: :system do
         click_on "Send magic link"
 
         mail = email_with_subject("Your magic link")
-        expect(mail).to_not be_present
+        expect(mail).to be_present
       end
     end
   end

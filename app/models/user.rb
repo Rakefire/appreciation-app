@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :appreciations
 
   def verified?
-    verified_at?
+    verified_at? && !verification_token.present?
   end
 end

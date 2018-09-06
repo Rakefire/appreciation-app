@@ -36,7 +36,7 @@ module AppreciationApp
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
 
     config.after_initialize do
-      Passwordless::SessionsController.send(:include, Passwordless::LimitToVerifiedUsers)
+      Passwordless::SessionsController.send(:include, Passwordless::SignInHelpers)
     end
   end
 end

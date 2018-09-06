@@ -22,8 +22,9 @@ class SignUpsController < ApplicationController
   # GET /sign_up/:token/verify
   def verify
     Users::Verify.call(params) do
-      on(:ok) do
+      on(:ok) do |user|
         flash[:alert] = t(:verified)
+        sign_in(user)
         redirect_to root_path
       end
       on(:invalid) do

@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
   private
 
   def set_current_user
-    Current.user = authenticate_by_cookie(User)
+    Current.user ||= authenticate_by_cookie(User)
   end
 
   def require_user!
-    return if Current.user
+    return if Current.user?
+
     save_passwordless_redirect_location!(User)
-    redirect_to root_path, flash: { error: 'You are not worthy!' }
+    redirect_to root_path, flash: { error: "You are not worthy!" }
   end
 end

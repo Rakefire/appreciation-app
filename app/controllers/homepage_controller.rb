@@ -1,6 +1,7 @@
 class HomepageController < ApplicationController
   before_action do
-    redirect_to(dashboard_index_path) if Current.user
+    next unless Current.user?
+    redirect_to(dashboard_index_path)
   end
 
   def index

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user!
   before_action :set_user
 
   # GET /users/:id
@@ -7,8 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/:id/edit
   def edit
-    user = User.find(params[:id])
-    @form = Users::UpdateForm.from_model(user)
+    @form = Users::UpdateForm.from_model(@user)
   end
 
   # PUT /users/:id
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = Current.user
+  end
 end

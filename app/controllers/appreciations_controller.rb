@@ -1,4 +1,6 @@
 class AppreciationsController < ApplicationController
+  before_action :require_user!
+
   def new
     @appreciation = Appreciations::CreateForm.new
   end

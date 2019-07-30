@@ -48,3 +48,22 @@ en:
     mailer:
       subject: "[Appreciation] Your magic link ✨"
       magic_link: "Here's your link: %{link}"
+
+  appreciations:
+    new:
+      ask:
+        who-to-recognize:
+          - Who is someone you care about that deserves to be recognized?
+        what-is-quality:
+          - What quality do you admire most about {{name}}?
+        what-is-note:
+          - What is something they do that makes your heart sing?
+  dashboard:
+    index:
+      appreciations-message:
+        zero:
+          - Send your first appreciation today to tell someone special how you really feel.
+        one:
+          - Great job! You sent your first appreciation. Are you feeling the love?
+        other:
+          - You're unstoppable. Keep sending apprecations to not break the chain!

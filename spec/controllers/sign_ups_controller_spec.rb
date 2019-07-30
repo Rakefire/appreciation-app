@@ -35,7 +35,7 @@ RSpec.describe SignUpsController, type: :controller do
 
       it "redirects to the created user" do
         post :create, params: {sign_up: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(dashboard_index_path)
       end
     end
 

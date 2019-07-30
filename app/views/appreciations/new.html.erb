@@ -1,0 +1,67 @@
+<div data-controller="appreciation">
+  <main class="pv4 ph3 ph5-ns tc min-vh-100">
+    <h2><%= t(".ask.who-to-recognize").sample %></h2>
+
+    <div>
+      <input class="input-reset ba b--black-20 pa2 w5 mb4 pa2 bg-near-white"
+             type="text"
+             placeholder="name"
+             name=""
+             value=""
+             data-action="curry#updateField"
+             data-curryTargetId="">
+    </div>
+
+    <div>
+      <%= link_to "Start",
+                  "#",
+                  class: "f5 link dim br3 ph5 pv2 mb2 dib white bg-blue",
+                  data: { action: 'appreciation#next', target: "quality" } %>
+    </div>
+  </main>
+
+  <main class="pv4 ph3 ph5-ns tc min-vh-100" id="quality">
+    <h2><%= t(".ask.what-is-quality").sample %></h2>
+    <% 12.times do %>
+      <div class="link dim gray dib h3 w3 h3-ns w3-ns br-100 ma3 pa2 bg-near-white ba b--black-10" title="word">
+      </div>
+    <% end %>
+
+    <div>
+      <%= link_to "Next",
+                  "#",
+                  class: "f5 link dim br3 ph5 pv2 mb2 dib white bg-blue",
+                  data: { action: 'appreciation#next', target: "note" } %>
+    </div>
+  </main>
+
+  <main class="pv4 ph3 ph5-ns tc min-vh-100" id="note">
+    <h2><%= t(".ask.what-is-note").sample %></h2>
+
+    <h3 class="f3">{{name}},</h3>
+
+    <div class="w-100">
+      <div contenteditable="true" class="ba b--black-20 pa2 w5 mb4 pa2 h-20 bg-near-white center">
+      </div>
+    </div>
+
+    <div>
+      <%- if Current.user? %>
+        <h3><%= Current.user.first_name %></h3>
+      <% else %>
+        <input class="input-reset ba b--black-20 pa2 w5 mb4 pa2 bg-near-white"
+               type="text"
+               placeholder="name"
+               name=""
+               value="">
+      <%- end %>
+    </div>
+    <%= form_for @appreciation do |f| %>
+      <%= f.hidden_field :name, value: "test" %>
+      <%= f.hidden_field :quality, value: "test" %>
+      <%= f.hidden_field :note %>
+      <%# f.hidden_field :your_name %>
+      <%= f.submit "Send Appreciation", class: "f5 link dim br3 ph5 pv2 mb2 dib black bg-near-white" %>
+    <% end %>
+  </main>
+</div>

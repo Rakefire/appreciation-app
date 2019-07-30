@@ -1,0 +1,17 @@
+<div class="flex flex-column align-center tc">
+  <h2>My Appreciations</h2>
+  <h3><%= @appreciations_count %></h3>
+  <p><%= t(".appreciations-message", count: @appreciations_count).sample %></p>
+</div>
+
+<main class="w-80 center">
+  <%= link_to new_appreciation_path, class: "link" do %>
+    <article class="dt h2-m w-100 ba mid-gray b--black-05 br3 pv2 mv2 bg-near-white">
+      <div class="dtc v-mid tc">
+        <div class="f1">+</div>
+      </div>
+    </article>
+  <% end %>
+
+  <%= render partial: 'listed_appreciation', collection: @appreciations, as: :appreciation %>
+</main>

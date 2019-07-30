@@ -10,7 +10,7 @@ class SignUpsController < ApplicationController
     @form = Users::SignUpForm.from_params(params)
 
     Users::SignUp.call(@form) do
-      on(:ok) { redirect_to root_path }
+      on(:ok) { redirect_to dashboard_index_path }
       on(:invalid) { render :new}
       on(:race_non_unique_email) do
         flash.now[:alert] = t(:email_taken)

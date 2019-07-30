@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+  resources :appreciations, except: [:index]
+
   resources :users, only: [:show, :edit, :update]
   resources :sign_ups, only: [:new, :create] do
     collection do

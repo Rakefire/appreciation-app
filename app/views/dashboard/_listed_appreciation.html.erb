@@ -1,0 +1,14 @@
+<%= link_to edit_appreciation_path(appreciation), class: "link" do %>
+  <article class="inline-flex items-center flex-nowrap justify-between h2-m w-100 ba mid-gray b--black-05 br3 pv2 mv2 bg-near-white">
+    <h1 class="f3 f3-ns fw6 lh-title pl3 gray mv2">
+      <%= appreciation.name %>
+    </h1>
+    <h3 class="f6 f6-ns fw5 lh-title pr3 mid-gray mv2">
+      <%= link_to "[delete]", appreciation_path(appreciation),
+                              class: 'link f6 mh2',
+                              method: :delete,
+                              data: { confirm: "Are you sure?" } %>
+      <%= appreciation.created_at.strftime('%m/%d') %>
+    </h1>
+  </article>
+<% end %>

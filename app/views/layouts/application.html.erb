@@ -6,20 +6,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
-    <header class="bg-white black-80 tc pv4 avenir">
-      <h2 class="mt2 mb0 f6 fw4 ttu tracked"><%= yield :subtitle %></h2>
+    <header class="bg-white text-black tc py-4 avenir">
+      <h2 class="mt2 mb0 text-xl fw4 ttu tracked"><%= yield :subtitle %></h2>
     </header>
 
     <main>
       <div class="flex flex justify-center ma2 tc br2 pa2">
-        <h2 class="link b f3 f2-ns dim black-70 lh-solid"><%= yield :heading %></h2>
+        <h2 class="link b text-lg f2-ns dim black-70 lh-solid"><%= yield :heading %></h2>
       </div>
       <%= yield %>
       <footer class="vh-100 dt w-100">

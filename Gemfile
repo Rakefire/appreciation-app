@@ -1,21 +1,20 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.5.1"
+ruby "2.6.3"
 
 gem "autoprefixer-rails"
 gem "rack-canonical-host"
 gem "passwordless"
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 3.11"
-gem "rails", "~> 5.2.0"
+gem "rails", "~> 5.2.3"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "turbolinks", "~> 5"
 gem "rectify"
 gem "simple_form"
 gem "jbuilder", "~> 2.5"
-gem "tachyons-rails"
 gem "sidekiq"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
